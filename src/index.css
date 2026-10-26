@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: 'Mukta', 'Noto Sans Devanagari', system-ui, sans-serif;
+  background: #fbf6ea;
+  color: #3b2a20;
+  overscroll-behavior: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* paper with faint dots, like a ruled panchayat register */
+.paper {
+  background-color: #fbf6ea;
+  background-image: radial-gradient(rgba(59, 42, 32, 0.08) 1px, transparent 1.3px);
+  background-size: 14px 14px;
+}
+
+/* slightly lopsided borders, a hard offset shadow: looks inked, not rendered */
+.sketch {
+  border: 2.5px solid #3b2a20;
+  border-radius: 14px 6px 12px 7px / 7px 12px 6px 14px;
+  box-shadow: 3px 3px 0 #3b2a20;
+}
+.sketch-sm {
+  border: 2px solid #3b2a20;
+  border-radius: 10px 4px 9px 5px / 5px 9px 4px 10px;
+}
+.pressable {
+  transition: transform 0.08s, box-shadow 0.08s;
+}
+.pressable:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #3b2a20;
+}
+.pressable:disabled {
+  opacity: 0.45;
+}
+
+input[type='range'] {
+  accent-color: #4f7a38;
+  height: 36px;
+  width: 100%;
+}
+
+.hand {
+  font-family: 'Kalam', 'Mukta', cursive;
+}
+
+/* celebration: marigold petals drifting down when a work is completed */
+@keyframes petal {
+  0% { transform: translate(0, -20px) rotate(0deg); opacity: 0; }
+  12% { opacity: 1; }
+  100% { transform: translate(var(--dx), 85vh) rotate(var(--rot)); opacity: 0; }
+}
+.petal {
+  position: fixed;
+  top: 0;
+  width: 14px;
+  height: 20px;
+  border-radius: 80% 10% 80% 10%;
+  animation: petal 1.8s ease-in forwards;
+  pointer-events: none;
+  z-index: 60;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+.bob { animation: bob 0.9s ease-in-out infinite; }
+
+@keyframes rise {
+  from { transform: translateY(14px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.rise { animation: rise 0.25s ease-out; }
+
+.label3d {
+  background: #fbf6ea;
+  border: 2px solid #3b2a20;
+  border-radius: 8px 3px 7px 4px / 4px 7px 3px 8px;
+  padding: 1px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  pointer-events: none;
+  color: #3b2a20;
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
